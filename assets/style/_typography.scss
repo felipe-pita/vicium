@@ -1,0 +1,24 @@
+$sans: 'Fira Sans', sans-serif;
+
+body { font-family: $sans; }
+
+article {
+	
+	/* paragraph */
+	p { 
+		font-size: 1.4em; 
+		margin: 20px 0; 
+	}
+
+	/* bold */
+	b, strong { font-weight: bold; }
+
+	/* Italic */
+	i, em { font-style: italic; }
+
+	/* Listagem */
+	ul li { list-style: inside disc; }
+	ol li { list-style: inside decimal; }
+}
+
+.hide-title { display: none; }

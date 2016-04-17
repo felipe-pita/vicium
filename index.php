@@ -1,0 +1,1 @@
+<?php // Got a lot of good things stranger! ?>
