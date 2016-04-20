@@ -63,7 +63,7 @@
 						<div class="news__list--thumbnail"><img src="<?php echo get_template_directory_uri(); ?>/layout/news1.png" alt=""></div>
 						<h2 class="news__list--title"><a href="#">Street Fighter 5: Capcom revela detalhes de Alex e do DLC de março</a></h2>
 						<div class="news__list--stuff">
-							<div class="news__list--views">1990</div>
+							<div class="news__list--views"><span class="icon__views"><svg width="16" height="11"><use xlink:href="<?php echo get_template_directory_uri(); ?>/dist/images/sprite.svg#icon__views" /></svg></span>1990</div>
 							<div class="news__list--datetime">por <span class="author">Vitor Dente</span> em às <span><time datetime="2008-02-14">10:33</time></span></div>
 						</div>
 					</div>
