@@ -2,11 +2,11 @@
 
 
 	/*
-	 * Notícias
+	 * Post types
 	 *
 	 */
 
-	// Registra o post_type
+	// Notícias
 	function set_post_noticias() {
 
 		$labels = array(
@@ -62,14 +62,8 @@
 	add_action( 'init', 'set_post_noticias', 0 );
 
 
-
-	/*
-	 * Análises
-	 *
-	 */
-
-	// Registra o post_type
-	function set_post_analise() {
+	// Análises
+	function set_post_analises() {
 
 		$labels = array(
 			'name'                  => _x( 'Análises', 'Post Type General Name', 'vicium' ),
@@ -117,10 +111,247 @@
 			'publicly_queryable'    => true,
 			'capability_type'       => 'page',
 		);
-		register_post_type( 'post_analise', $args );
+		register_post_type( 'post_analises', $args );
 
 	}
-	add_action( 'init', 'set_post_analise', 0 );
+	add_action( 'init', 'set_post_analises', 0 );
+
+
+
+	/*
+	 * Taxonomies
+	 *
+	 */
+
+	// Plataforma
+	function set_taxonomy_plataformas() {
+
+		$labels = array(
+			'name'                       => _x( 'Plataformas', 'Taxonomy General Name', 'vicium' ),
+			'singular_name'              => _x( 'Plataforma', 'Taxonomy Singular Name', 'vicium' ),
+			'menu_name'                  => __( 'Plataforma', 'vicium' ),
+			'all_items'                  => __( 'Todos os plataformas', 'vicium' ),
+			'parent_item'                => __( 'Item pai', 'vicium' ),
+			'parent_item_colon'          => __( 'Item pai:', 'vicium' ),
+			'new_item_name'              => __( 'Novo nome', 'vicium' ),
+			'add_new_item'               => __( 'Adicionar', 'vicium' ),
+			'edit_item'                  => __( 'Editar', 'vicium' ),
+			'update_item'                => __( 'Atualizar', 'vicium' ),
+			'view_item'                  => __( 'Ver', 'vicium' ),
+			'separate_items_with_commas' => __( 'Separe-os com vírgula', 'vicium' ),
+			'add_or_remove_items'        => __( 'Adicionar/remover', 'vicium' ),
+			'choose_from_most_used'      => __( 'Mais usados', 'vicium' ),
+			'popular_items'              => __( 'Populares', 'vicium' ),
+			'search_items'               => __( 'Procurar', 'vicium' ),
+			'not_found'                  => __( 'Não encontrado', 'vicium' ),
+			'no_terms'                   => __( 'Nenhum item', 'vicium' ),
+			'items_list'                 => __( 'Lista de itens', 'vicium' ),
+			'items_list_navigation'      => __( 'Itens', 'vicium' ),
+		);
+		$rewrite = array(
+			'slug'                       => 'plataforma',
+			'with_front'                 => true,
+			'hierarchical'               => false,
+		);
+		$args = array(
+			'labels'                     => $labels,
+			'hierarchical'               => true,
+			'public'                     => true,
+			'show_ui'                    => true,
+			'show_admin_column'          => true,
+			'show_in_nav_menus'          => true,
+			'show_tagcloud'              => false,
+			'rewrite'                    => $rewrite,
+		);
+		register_taxonomy( 'tax_plataformas', array( 'post_noticias', 'post_analises' ), $args );
+
+	}
+	add_action( 'init', 'set_taxonomy_plataformas', 0 );
+
+
+	// Gêneros
+	function set_taxonomy_generos() {
+
+		$labels = array(
+			'name'                       => _x( 'Gêneros', 'Taxonomy General Name', 'vicium' ),
+			'singular_name'              => _x( 'Gênero', 'Taxonomy Singular Name', 'vicium' ),
+			'menu_name'                  => __( 'Gênero', 'vicium' ),
+			'all_items'                  => __( 'Todos os gêneros', 'vicium' ),
+			'parent_item'                => __( 'Item pai', 'vicium' ),
+			'parent_item_colon'          => __( 'Item pai:', 'vicium' ),
+			'new_item_name'              => __( 'Novo nome', 'vicium' ),
+			'add_new_item'               => __( 'Adicionar', 'vicium' ),
+			'edit_item'                  => __( 'Editar', 'vicium' ),
+			'update_item'                => __( 'Atualizar', 'vicium' ),
+			'view_item'                  => __( 'Ver', 'vicium' ),
+			'separate_items_with_commas' => __( 'Separe-os com vírgula', 'vicium' ),
+			'add_or_remove_items'        => __( 'Adicionar/remover', 'vicium' ),
+			'choose_from_most_used'      => __( 'Mais usados', 'vicium' ),
+			'popular_items'              => __( 'Populares', 'vicium' ),
+			'search_items'               => __( 'Procurar', 'vicium' ),
+			'not_found'                  => __( 'Não encontrado', 'vicium' ),
+			'no_terms'                   => __( 'Nenhum item', 'vicium' ),
+			'items_list'                 => __( 'Lista de itens', 'vicium' ),
+			'items_list_navigation'      => __( 'Itens', 'vicium' ),
+		);
+		$rewrite = array(
+			'slug'                       => 'genero',
+			'with_front'                 => true,
+			'hierarchical'               => false,
+		);
+		$args = array(
+			'labels'                     => $labels,
+			'hierarchical'               => true,
+			'public'                     => true,
+			'show_ui'                    => true,
+			'show_admin_column'          => true,
+			'show_in_nav_menus'          => true,
+			'show_tagcloud'              => false,
+			'rewrite'                    => $rewrite,
+		);
+		register_taxonomy( 'tax_generos', array( 'post_analises' ), $args );
+
+	}
+	add_action( 'init', 'set_taxonomy_generos', 0 );
+
+
+	// Gêneros
+	function set_taxonomy_distribuidores() {
+
+		$labels = array(
+			'name'                       => _x( 'Distribuidores', 'Taxonomy General Name', 'vicium' ),
+			'singular_name'              => _x( 'Distribuidor', 'Taxonomy Singular Name', 'vicium' ),
+			'menu_name'                  => __( 'Distribuidor', 'vicium' ),
+			'all_items'                  => __( 'Todos os distribuidores', 'vicium' ),
+			'parent_item'                => __( 'Item pai', 'vicium' ),
+			'parent_item_colon'          => __( 'Item pai:', 'vicium' ),
+			'new_item_name'              => __( 'Novo nome', 'vicium' ),
+			'add_new_item'               => __( 'Adicionar', 'vicium' ),
+			'edit_item'                  => __( 'Editar', 'vicium' ),
+			'update_item'                => __( 'Atualizar', 'vicium' ),
+			'view_item'                  => __( 'Ver', 'vicium' ),
+			'separate_items_with_commas' => __( 'Separe-os com vírgula', 'vicium' ),
+			'add_or_remove_items'        => __( 'Adicionar/remover', 'vicium' ),
+			'choose_from_most_used'      => __( 'Mais usados', 'vicium' ),
+			'popular_items'              => __( 'Populares', 'vicium' ),
+			'search_items'               => __( 'Procurar', 'vicium' ),
+			'not_found'                  => __( 'Não encontrado', 'vicium' ),
+			'no_terms'                   => __( 'Nenhum item', 'vicium' ),
+			'items_list'                 => __( 'Lista de itens', 'vicium' ),
+			'items_list_navigation'      => __( 'Itens', 'vicium' ),
+		);
+		$rewrite = array(
+			'slug'                       => 'distribuidor',
+			'with_front'                 => true,
+			'hierarchical'               => false,
+		);
+		$args = array(
+			'labels'                     => $labels,
+			'hierarchical'               => false,
+			'public'                     => true,
+			'show_ui'                    => true,
+			'show_admin_column'          => true,
+			'show_in_nav_menus'          => true,
+			'show_tagcloud'              => false,
+			'rewrite'                    => $rewrite,
+		);
+		register_taxonomy( 'tax_distribuidores', array( 'post_analises' ), $args );
+
+	}
+	add_action( 'init', 'set_taxonomy_distribuidores', 0 );
+
+
+	// Gêneros
+	function set_taxonomy_desenvolvedores() {
+
+		$labels = array(
+			'name'                       => _x( 'Desenvolvedores', 'Taxonomy General Name', 'vicium' ),
+			'singular_name'              => _x( 'Desenvolvedor', 'Taxonomy Singular Name', 'vicium' ),
+			'menu_name'                  => __( 'Desenvolvedor', 'vicium' ),
+			'all_items'                  => __( 'Todos os desenvolvedores', 'vicium' ),
+			'parent_item'                => __( 'Item pai', 'vicium' ),
+			'parent_item_colon'          => __( 'Item pai:', 'vicium' ),
+			'new_item_name'              => __( 'Novo nome', 'vicium' ),
+			'add_new_item'               => __( 'Adicionar', 'vicium' ),
+			'edit_item'                  => __( 'Editar', 'vicium' ),
+			'update_item'                => __( 'Atualizar', 'vicium' ),
+			'view_item'                  => __( 'Ver', 'vicium' ),
+			'separate_items_with_commas' => __( 'Separe-os com vírgula', 'vicium' ),
+			'add_or_remove_items'        => __( 'Adicionar/remover', 'vicium' ),
+			'choose_from_most_used'      => __( 'Mais usados', 'vicium' ),
+			'popular_items'              => __( 'Populares', 'vicium' ),
+			'search_items'               => __( 'Procurar', 'vicium' ),
+			'not_found'                  => __( 'Não encontrado', 'vicium' ),
+			'no_terms'                   => __( 'Nenhum item', 'vicium' ),
+			'items_list'                 => __( 'Lista de itens', 'vicium' ),
+			'items_list_navigation'      => __( 'Itens', 'vicium' ),
+		);
+		$rewrite = array(
+			'slug'                       => 'desenvolvedor',
+			'with_front'                 => true,
+			'hierarchical'               => false,
+		);
+		$args = array(
+			'labels'                     => $labels,
+			'hierarchical'               => false,
+			'public'                     => true,
+			'show_ui'                    => true,
+			'show_admin_column'          => true,
+			'show_in_nav_menus'          => true,
+			'show_tagcloud'              => false,
+			'rewrite'                    => $rewrite,
+		);
+		register_taxonomy( 'tax_desenvolvedores', array( 'post_analises' ), $args );
+
+	}
+	add_action( 'init', 'set_taxonomy_desenvolvedores', 0 );
+
+
+	// Plataforma
+	function set_taxonomy_jogadores() {
+
+		$labels = array(
+			'name'                       => _x( 'Número de jogadores', 'Taxonomy General Name', 'vicium' ),
+			'singular_name'              => _x( 'Número de jogadores', 'Taxonomy Singular Name', 'vicium' ),
+			'menu_name'                  => __( 'Número de jogadores', 'vicium' ),
+			'all_items'                  => __( 'Todos os plataformas', 'vicium' ),
+			'parent_item'                => __( 'Item pai', 'vicium' ),
+			'parent_item_colon'          => __( 'Item pai:', 'vicium' ),
+			'new_item_name'              => __( 'Novo nome', 'vicium' ),
+			'add_new_item'               => __( 'Adicionar', 'vicium' ),
+			'edit_item'                  => __( 'Editar', 'vicium' ),
+			'update_item'                => __( 'Atualizar', 'vicium' ),
+			'view_item'                  => __( 'Ver', 'vicium' ),
+			'separate_items_with_commas' => __( 'Separe-os com vírgula', 'vicium' ),
+			'add_or_remove_items'        => __( 'Adicionar/remover', 'vicium' ),
+			'choose_from_most_used'      => __( 'Mais usados', 'vicium' ),
+			'popular_items'              => __( 'Populares', 'vicium' ),
+			'search_items'               => __( 'Procurar', 'vicium' ),
+			'not_found'                  => __( 'Não encontrado', 'vicium' ),
+			'no_terms'                   => __( 'Nenhum item', 'vicium' ),
+			'items_list'                 => __( 'Lista de itens', 'vicium' ),
+			'items_list_navigation'      => __( 'Itens', 'vicium' ),
+		);
+		$rewrite = array(
+			'slug'                       => 'numero-de-jogadores',
+			'with_front'                 => true,
+			'hierarchical'               => false,
+		);
+		$args = array(
+			'labels'                     => $labels,
+			'hierarchical'               => true,
+			'public'                     => true,
+			'show_ui'                    => true,
+			'show_admin_column'          => true,
+			'show_in_nav_menus'          => true,
+			'show_tagcloud'              => false,
+			'rewrite'                    => $rewrite,
+		);
+		register_taxonomy( 'tax_jogadores', array( 'post_analises' ), $args );
+
+	}
+	add_action( 'init', 'set_taxonomy_jogadores', 0 );
+
 
 
 
