@@ -1,5 +1,19 @@
 # Vicium
 
+taxonomias
+
+Genero
+
+Plataformas
+
+distribuidor
+
+Desenvolvedor
+
+Jogadores
+
+
+
 
 
 # Mission

@@ -32,6 +32,10 @@ function footer_scripts() {
 		wp_register_script('plugins', get_template_directory_uri() . '/dist/script/plugins.js', array(), '1.0');
 		wp_enqueue_script('plugins');
 
+		// Javascript para definicao de plugins
+		wp_register_script('svgxusePollyfill', get_template_directory_uri() . '/dist/script/vendor/svgxuse.min.js', array(), '1.0');
+		wp_enqueue_script('svgxusePollyfill');
+
 		if ( is_front_page() ) {
 			// Javascript para definicao de plugins
 			wp_register_script('trianglify', get_template_directory_uri() . '/dist/script/vendor/trianglify.min.js', array(), '0.4.0');
