@@ -41,7 +41,7 @@
 			'description'           => __( 'Cadastro de notícias', 'vicium' ),
 			'labels'                => $labels,
 			'supports'              => array( ),
-			'taxonomies'            => array( 'tax_plataforma', 'tax_tags' ),
+			'taxonomies'            => array( 'tax_plataforma', 'tax_tags', 'tax_genero' ),
 			'hierarchical'          => false,
 			'public'                => true,
 			'show_ui'               => true,
@@ -103,7 +103,7 @@
 			'description'           => __( 'Análise de jogos', 'vicium' ),
 			'labels'                => $labels,
 			'supports'              => array( ),
-			'taxonomies'            => array( 'tax_plataforma', 'tax_tags' ),
+			'taxonomies'            => array( 'tax_plataforma', 'tax_tags', 'tax_genero' ),
 			'hierarchical'          => false,
 			'public'                => true,
 			'show_ui'               => true,
@@ -118,11 +118,56 @@
 			'publicly_queryable'    => true,
 			'capability_type'       => 'post',
 		);
-		register_post_type( 'post_analise', $args );
+		register_post_type( 'post_analises', $args );
 
 	}
 	add_action( 'init', 'set_post_analise', 0 );
 
 
+
+	// Register Custom Taxonomy
+	function set_taxonomy_genero() {
+
+		$labels = array(
+			'name'                       => _x( 'Gêneros', 'Taxonomy General Name', 'vicium' ),
+			'singular_name'              => _x( 'Gênero', 'Taxonomy Singular Name', 'vicium' ),
+			'menu_name'                  => __( 'Gênero', 'vicium' ),
+			'all_items'                  => __( 'Todos os gêneros', 'vicium' ),
+			'parent_item'                => __( 'Gênero principal', 'vicium' ),
+			'parent_item_colon'          => __( 'Gênero pai:', 'vicium' ),
+			'new_item_name'              => __( 'Novo nome', 'vicium' ),
+			'add_new_item'               => __( 'Adicionar novo', 'vicium' ),
+			'edit_item'                  => __( 'Editar item', 'vicium' ),
+			'update_item'                => __( 'Atualizar item', 'vicium' ),
+			'view_item'                  => __( 'Ver item', 'vicium' ),
+			'separate_items_with_commas' => __( 'Separe-os com vírgula', 'vicium' ),
+			'add_or_remove_items'        => __( 'Adicionar ou remover item', 'vicium' ),
+			'choose_from_most_used'      => __( 'Mais usados', 'vicium' ),
+			'popular_items'              => __( 'Populares', 'vicium' ),
+			'search_items'               => __( 'Procurar itens', 'vicium' ),
+			'not_found'                  => __( 'Não encontrado', 'vicium' ),
+			'no_terms'                   => __( 'Nenhum item', 'vicium' ),
+			'items_list'                 => __( 'Lista de itens', 'vicium' ),
+			'items_list_navigation'      => __( 'Lista de navegação de itens', 'vicium' ),
+		);
+		$rewrite = array(
+			'slug'                       => 'genero',
+			'with_front'                 => true,
+			'hierarchical'               => true,
+		);
+		$args = array(
+			'labels'                     => $labels,
+			'hierarchical'               => true,
+			'public'                     => true,
+			'show_ui'                    => true,
+			'show_admin_column'          => true,
+			'show_in_nav_menus'          => true,
+			'show_tagcloud'              => false,
+			'rewrite'                    => $rewrite,
+		);
+		register_taxonomy( 'tax_genero', array( 'post_analises', 'post_noticias' ), $args );
+
+	}
+	add_action( 'init', 'set_taxonomy_genero', 0 );
 
 ?>
