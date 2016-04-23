@@ -4,6 +4,7 @@
 include(TEMPLATEPATH . '/functions/assets.php');
 include(TEMPLATEPATH . '/functions/login.php');
 include(TEMPLATEPATH . '/functions/performance.php');
+include(TEMPLATEPATH . '/functions/helpers.php');
 
 
 // back

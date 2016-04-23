@@ -12,10 +12,15 @@ function header_scripts() {
 		wp_register_style('style', get_template_directory_uri() . '/dist/style/main.css', '0.1');
 		wp_enqueue_style('style');
 
-		// Google Fonts
+		// Fira sans
 		wp_register_style('FiraSans', '//fonts.googleapis.com/css?family=Fira+Sans:400,300,300italic,400italic,500,500italic,700,700italic');
 		wp_enqueue_style('FiraSans');
 
+		// Noto Serif
+		if ( is_singular() ) {
+			wp_register_style('NotoSerif', '//fonts.googleapis.com/css?family=Noto+Serif:400,400italic,700,700italic');
+			wp_enqueue_style('NotoSerif');
+		}
 	}
 }
 add_action('wp_enqueue_scripts', 'header_scripts');
@@ -27,14 +32,6 @@ function footer_scripts() {
 		// Javascript principal
 		wp_register_script('main', get_template_directory_uri() . '/dist/script/main.js', array(), '1.0');
 		wp_enqueue_script('main');
-
-		// Javascript para definicao de plugins
-		wp_register_script('plugins', get_template_directory_uri() . '/dist/script/plugins.js', array(), '1.0');
-		wp_enqueue_script('plugins');
-
-		// Javascript para definicao de plugins
-		wp_register_script('svgxusePollyfill', get_template_directory_uri() . '/dist/script/vendor/svgxuse.min.js', array(), '1.0');
-		wp_enqueue_script('svgxusePollyfill');
 
 		if ( is_front_page() ) {
 			// Javascript para definicao de plugins
