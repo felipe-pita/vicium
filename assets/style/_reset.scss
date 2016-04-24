@@ -12,7 +12,7 @@ header, nav, section, article, main, aside, footer, figure { display: block }
 *, *:after, *:before { -moz-box-sizing: border-box; box-sizing: border-box; }
 
 /* font-sizing */
-html { font-size: 62.5% }  /* html element 62.5% font-size for REM use */
+html { font-size: 10px }
 
 /* fontes otimizadas para leitura de artigos */
 article { -webkit-font-smoothing: antialiased; font-smoothing: antialiased; text-rendering: optimizeLegibility; }
@@ -21,20 +21,20 @@ article { -webkit-font-smoothing: antialiased; font-smoothing: antialiased; text
 .clear:before, .clear:after { content: " "; display: table } .clear:after { clear: both } .clear { *zoom: 1; } .clearfix:after { content: "."; display: block; height: 0; clear: both; visibility: hidden} .clearfix { display: block; height: 1% } .clearfix:before, .clearfix:after { content: " "; display: table; } .clearfix:after { clear: both; } .clearfix { *zoom: 1; }
 
 /* width by container */
-img { max-width: 100%; width: 100%; vertical-align: bottom; height: auto; }
+img { max-width: 100%; height: auto; }
 
 
 /* --------------------------------------------------
    Default wordpress classes
    -------------------------------------------------- */
 
-.screen-reader-text {  }
+.screen-reader-text { }
 
 /* default wordpress align classes */
-.alignnone   { margin:  5px 20px 20px  5px; }
-.aligncenter { margin:  5px auto  5px auto; }
-.alignright  { margin:  5px  0px 20px 20px; float: right; }
-.alignleft   { margin:  5px 20px  5px  0px; float: left; }
+.alignnone   { }
+.aligncenter { margin:  0 auto; }
+.alignright  { margin:  0 0 0 20px; float: right; }
+.alignleft   { margin:  0 20px 0 0; float: left; }
 
 /* default wordpress img captions */
 .wp-caption {  }
