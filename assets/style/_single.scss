@@ -1,7 +1,56 @@
-/* Analises */
+.single {
 
+	&__content {
+		font-family: $serif;
+
+		h1, h2, h3, h4, h5, h6 {
+			font-family: $sans;
+			font-weight: 700;
+			color: #67b718;
+		}
+
+		h1 { font-size: 40px; }
+		h2 { font-size: 34px; margin: 40px 0 15px; }
+		h3 { font-size: 28px; margin: 30px 0 20px; }
+		h4 { font-size: 22px; margin: 20px 0 10px; }
+		h5 { font-size: 18px; margin: 10px 0 5px; }
+		h6 { font-size: 16px; margin: 10px 0 5px; }
+
+		p {
+			margin: 0 0 35px;
+			font-size: 18px;
+			line-height: 28px;
+
+			a {
+				color: #67b719;
+				font-style: italic;
+				font-weight: 700;
+			}
+		}
+
+		// shortcodes
+		&--full-screen {
+			margin: 20px 0 50px;
+
+			p { margin: 0 }
+			br { display: none }
+
+			img {
+				display: block;
+				width: 100%;
+				max-width: 1980px;
+				margin: 0 auto;
+				object-fit: cover;
+			}
+		}
+	}
+}
+
+
+/* Analises */
 .single-analises {
 	
+	// Cabeçalho
 	&__header {
 		position: relative;
 		background-color: #000;
@@ -52,12 +101,14 @@
 		}
 	}
 
+	// Ficha tecnica
 	&__datasheet {
 		color: #fff;
 		display: flex;
 		justify-content: center;
+		flex-wrap: wrap;
 		padding-top: 20px;
-		padding-bottom: 2px;
+		padding-bottom: 1px;
 
 		&--data {
 			background-color: rgba(#8fc800, .17);
@@ -65,7 +116,7 @@
 			padding: 10px 20px 15px;
 			flex-grow: 0;
 			font-size: 13px;
-			margin: 0 1px;
+			margin: 1px;
 		}
 
 		&--title {
@@ -80,9 +131,16 @@
 			a {
 				color: #fff;
 			}
-		}
 
+			* {
+				font-weight: 500;
+			}
+		}
 	}
 
+	// Conteudo
+	&__text {
+		padding: 15px 110px;
+	}
 
 }
