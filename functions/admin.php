@@ -6,12 +6,18 @@
  */
 
 // Adiciona css custom
-function my_custom_admin_styles() {
+function custom_admin_styles() {
 	// Estilos CSS
 	wp_register_style('admin', get_template_directory_uri() . '/dist/style/admin.css', '0.1');
 	wp_enqueue_style('admin');
 }
-add_action('admin_head', 'my_custom_admin_styles');
+add_action('admin_head', 'custom_admin_styles');
+
+// Editor style
+function custom_editor_style() {
+    add_editor_style( get_template_directory_uri() . '/dist/style/admin.css' );
+}
+add_action('admin_init', 'custom_editor_style');
 
 
 // Remove o post type padrão
