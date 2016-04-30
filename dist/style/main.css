@@ -640,7 +640,10 @@ body {
       font-style: italic;
       font-weight: 700; }
   .single__content--full-screen {
-    margin: 20px 0 50px; }
+    margin: 20px 0 50px;
+    position: absolute;
+    width: 100%;
+    left: 0; }
     .single__content--full-screen p {
       margin: 0; }
     .single__content--full-screen br {
@@ -651,6 +654,8 @@ body {
       max-width: 1980px;
       margin: 0 auto;
       object-fit: cover; }
+    .single__content--full-screen-placeholder {
+      display: block; }
 
 /* Analises */
 .single-analises__header {

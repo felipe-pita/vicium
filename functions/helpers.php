@@ -60,6 +60,6 @@ function gramaticator( $terms ) {
 
 // imagem que ocupa a tela toda no conteúdo;
 function shortcode_telaInteira( $atts, $content = null ) {
-	return '<div class="single__content--full-screen">' . $content . '</div>';
+	return '<div class="single__content--full-screen">' . $content . '</div><span class="single__content--full-screen-placeholder"></span>';
 }
 add_shortcode( 'tela-inteira', 'shortcode_telaInteira' );

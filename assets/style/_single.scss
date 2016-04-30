@@ -31,6 +31,9 @@
 		// shortcodes
 		&--full-screen {
 			margin: 20px 0 50px;
+			position: absolute;
+			width: 100%;
+			left: 0;
 
 			p { margin: 0 }
 			br { display: none }
@@ -41,6 +44,10 @@
 				max-width: 1980px;
 				margin: 0 auto;
 				object-fit: cover;
+			}
+
+			&-placeholder {
+				display: block;
 			}
 		}
 	}
