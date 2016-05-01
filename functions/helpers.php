@@ -136,12 +136,16 @@ function my_post_gallery( $output, $attr ) {
 
 	if ($layout == 'slider') {
 
+		global $hasGalleySlider;
+		$hasGalleySlider = true;
+
 		$sliderOptions = array(
 			'cellAlign'      => 'left',
 			'contain'        => true, 
 			'setGallerySize' => false,
 			'pageDots'       => false,
 			'lazyLoad'       => 1,
+			'arrowShape'     => array ('x0' => 20, 'x1' => 60, 'y1' => 50, 'x2' => 70, 'y2' => 40, 'x3' => 40),
 			'asNavFor'       => "#gallery-$instance.gallery__slider--thumbs"
 		);
 
@@ -182,13 +186,19 @@ function my_post_gallery( $output, $attr ) {
 
 	} else {
 
+		!(count($attachments) % 2) ? $hasMain = false : $hasMain = true;
+
+		$loopIndex = 0;
+
 		foreach ( $attachments as $id => $attachment ) {
-			$file = wp_get_attachment_image($id, 'large');
+			$loopIndex++;
 
-			$output .= "<{$itemtag} class=\"gallery__tiles--item\">$file";
-
-			if ( $captiontag && trim($attachment->post_excerpt) ) {
-				$output .= "<{$captiontag} class=\"gallery__tiles--caption\"> wptexturize($attachment->post_excerpt); </{$captiontag}>";
+			if ( $hasMain && $loopIndex == 1) {
+				$file = wp_get_attachment_image($id, 'large');
+				$output .= "<{$itemtag} class=\"gallery__tiles--item gallery__tiles--main\">$file";
+			} else {
+				$file = wp_get_attachment_image($id, 'single-gallery-medium');
+				$output .= "<{$itemtag} class=\"gallery__tiles--item\">$file";
 			}
 
 			$output .= "</{$itemtag}>";		

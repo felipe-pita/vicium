@@ -39,10 +39,11 @@ function footer_scripts() {
 			wp_enqueue_script('trianglify');	
 		}
 
-		if ( is_singular() ) {
-			// Slick slider
+		global $hasGalleySlider;
+		if ( isset($hasGalleySlider) && $hasGalleySlider ) {
+			// flickity
 			wp_register_script('flickity', get_template_directory_uri() . '/dist/script/vendor/flickity.min.js', array(), '1.5.9');
-			wp_enqueue_script('flickity');	
+			wp_enqueue_script('flickity');
 		}
 	}
 }
