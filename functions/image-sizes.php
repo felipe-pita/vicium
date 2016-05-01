@@ -15,6 +15,7 @@ add_image_size('large',     800, 1080, false);
 
 // Análises
 add_image_size('single-full', 1980, 1080, array( 'center', 'top' ));
+add_image_size('single-gallery-thumbnail', 160, 90, array( 'center', 'center' ));
 
 
 // Adiciona os tamanhos customizados ao media uploader
