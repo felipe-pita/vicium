@@ -55,17 +55,59 @@
 
 	// Galeria de imagens
 	.gallery {
-		background-color: darken($bodyBgColor, 5%);
-		box-shadow: 0 0 0 1px darken($bodyBgColor, 10%) inset;
 		margin-bottom: 20px;
+
+		img { 
+			display: block;
+			width: 100%;
+		}
 
 		// Slider
 		&__slider {
 			width: 100%;
+			background-color: darken($bodyBgColor, 5%);
+			box-shadow: 0 0 0 1px darken($bodyBgColor, 10%) inset;
 
 			.flickity-viewport {
 			  position: absolute;
 			    width: 100%;
+			}
+
+			.flickity-prev-next-button {
+				border-radius: 0;
+				width: 90px;
+				height: 90px;
+				background-color: rgba(#000, .5);
+				transition: background .2s ease;
+
+				.arrow { 
+					fill: rgba(#fff, .3); 
+					transition: fill .2s ease;
+				}
+
+				&:active {
+					background-color: rgba(#000, .8);
+					opacity: 1;
+
+					.arrow { fill: rgba(#fff, .6); }
+				}
+			}
+
+			.flickity-prev-next-button.previous,
+			.flickity-prev-next-button.next{ 
+				opacity: 0;
+				transition: all .4s ease;
+			}
+
+			.flickity-prev-next-button.previous { transform: translateX(-10%); }
+			.flickity-prev-next-button.next     { transform: translateX(10%); }
+
+			&:hover {
+				.flickity-prev-next-button.previous,
+				.flickity-prev-next-button.next {
+					transform: translateX(0);
+					opacity: 1;
+				}
 			}
 
 			&--preview {
@@ -77,9 +119,7 @@
 					width: 100%;
 					height: 100%;
 
-					img { 
-						display: block; 
-						width: 100%;
+					img {
 						height: 100%;
 						object-fit: contain;
 					}
@@ -121,11 +161,7 @@
 						transition: transform .4s ease;
 					}
 
-					img { 
-						display: block; 
-						width: 100%;
-						object-fit: cover;
-					}
+					img { object-fit: cover; }
 
 					&.is-nav-selected {
 
@@ -141,6 +177,25 @@
 				}
 			}
 		}
+
+
+		&__tiles {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-between;
+
+			&--item {
+				margin-bottom: 15px;
+				width: 50%;
+				width: calc(50% - 7.5px);
+			}
+
+			&--main {
+				width: 100%;
+			}
+		}
+		
+
 	} /* @ galeria */
 
 }

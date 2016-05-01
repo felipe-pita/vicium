@@ -17,6 +17,8 @@ body {
 .ad {
 	background-color: darken($bodyBgColor, 5%);
 	box-shadow: 0 0 0 1px darken($bodyBgColor, 10%) inset;
+
+	img { display: block }
 }
 
 // Share
@@ -168,11 +170,7 @@ body {
 
 		&.next { right: 10px; }
 
-		&:disabled {
-			filter: alpha(opacity=30);
-			opacity: 0.3;
-			cursor: auto;
-		}
+		&:disabled { display: none; }
 
 		svg {
 			position: absolute;
@@ -188,23 +186,6 @@ body {
 			color: #333;
 			font-size: 26px;
 		}
-	}
-
-	&-rtl {
-		.flickity-prev-next-button {
-
-			&.previous {
-				left: auto;
-				right: 10px;
-			}
-
-			&.next {
-				right: auto;
-				left: 10px;
-			}
-		}
-
-		.flickity-page-dots { direction: rtl; }
 	}
 
 	&-page-dots {
