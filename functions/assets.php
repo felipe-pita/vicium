@@ -39,6 +39,11 @@ function footer_scripts() {
 			wp_enqueue_script('trianglify');	
 		}
 
+		if ( is_singular() ) {
+			// Slick slider
+			wp_register_script('flickity', get_template_directory_uri() . '/dist/script/vendor/flickity.min.js', array(), '1.5.9');
+			wp_enqueue_script('flickity');	
+		}
 	}
 }
 add_action('wp_footer', 'footer_scripts');
