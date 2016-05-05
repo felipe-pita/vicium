@@ -28,7 +28,7 @@ img { max-width: 100%; height: auto; }
    Default wordpress classes
    -------------------------------------------------- */
 
-.screen-reader-text { }
+.screen-reader-text { display: none; }
 
 /* default wordpress align classes */
 .alignnone   { }
