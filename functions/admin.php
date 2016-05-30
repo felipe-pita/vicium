@@ -36,7 +36,7 @@ add_action('print_media_templates', function(){
 ?>
 <script type="text/html" id="tmpl-custom-gallery-setting">
 	<label class="setting">
-		<span><?php _e('Select'); ?></span>
+		<span>Layout</span>
 		<select data-setting="layout">
 			<option value=""></option>
 			<option value="slider">Slider</option>

@@ -34,10 +34,10 @@ var gulp         = require('gulp'),
 
 // Origens
 var paths = {
-	style:  ['./assets/style/**/*.scss'],
-	script: ['./assets/script/**/*.js'],
-	images: ['./assets/images/**/*', '!./assets/images/sprite/*'],
-	sprite: ['./assets/images/sprite/*.svg'],
+	style:     ['./assets/style/**/*.scss'],
+	script:    ['./assets/script/**/*.js'],
+	images:    ['./assets/images/**/*', '!./assets/images/sprite/*'],
+	sprite:    ['./assets/images/sprite/*.svg'],
 };
 
 // Destino dos arquivos compilados
@@ -50,7 +50,7 @@ var dest = './dist/';
 
 // Compila o SASS e otimiza o CSS
 gulp.task('sass', function() {
-	gulp.src(paths.style)
+	return gulp.src(paths.style)
 	.pipe(sass().on('error', sass.logError))
 	//.pipe(minifyCss())
 	.pipe(autoprefixer("last 2 version", "> 1%", "ie 8"))
@@ -58,9 +58,18 @@ gulp.task('sass', function() {
 });
 
 
+// Compila o css critico
+gulp.task('inlineCss', ['sass'], function() {
+	return gulp.src('./assets/style/essential.scss')
+	.pipe(sass().on('error', sass.logError))
+	.pipe(minifyCss())
+	.pipe(gulp.dest(dest+'style/'));
+});
+
+
 // Otimiza JS
 gulp.task('script', ['jshint'], function() {
-	gulp.src(paths.script)
+	return gulp.src(paths.script)
 	.pipe(plumber())
 	.pipe(newer(dest+'script/'))
 	//.pipe(stripDebug())
@@ -70,7 +79,7 @@ gulp.task('script', ['jshint'], function() {
 
 	// __JS hint
 	gulp.task('jshint', function() {
-		gulp.src(['assets/script/**/*', '!./assets/script/vendor/**/*'])
+		return gulp.src(['assets/script/**/*', '!./assets/script/vendor/**/*'])
 		.pipe(jshint())
 		.pipe(jshint.reporter('default'))
 	});
@@ -106,18 +115,15 @@ gulp.task('browser-sync-setup', function() {
 
 // Verifica alterações
 gulp.task('watch', function() {
-	gulp.watch(paths.sprite, ['sprite', browserSync.reload] );
-	gulp.watch(paths.images, ['images', browserSync.reload] );
-	gulp.watch(paths.style,  ['sass',   browserSync.reload] );
-	gulp.watch(paths.script, ['script', browserSync.reload] );
+	gulp.watch(paths.sprite, ['sprite',    browserSync.reload] );
+	gulp.watch(paths.images, ['images',    browserSync.reload] );
+	gulp.watch(paths.style,  ['inlineCss', browserSync.reload] );
+	gulp.watch(paths.script, ['script',    browserSync.reload] );
 });
 
 
 // Task padrão
 gulp.task('default', ['watch', 'browser-sync-setup' ]);
-
-
-
 
 gutil.log(gutil.colors.green   ('  __    __  __     ______     __     __  __     __    __    '));
 gutil.log(gutil.colors.green   (' /\\ \\  / / /\\ \\   /\\  ___\\   /\\ \\   /\\ \\/\\ \\   /\\ "-./  \\   '));

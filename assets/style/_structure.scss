@@ -2,16 +2,6 @@ body {
 	background-color: $bodyBgColor;
 }
 
-// Helper
-.container {
-	width: 100%;
-	margin-left: auto;
-	margin-right: auto;
-	max-width: 1024px;
-	padding-left: 30px;
-	padding-right: 30px;
-}
-
 
 // Ads
 .ad {
@@ -19,6 +9,17 @@ body {
 	box-shadow: 0 0 0 1px darken($bodyBgColor, 10%) inset;
 
 	img { display: block }
+}
+
+.global-link {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 100;
+	text-indent: -999px;
+	overflow: hidden;
 }
 
 // Share
@@ -32,28 +33,25 @@ body {
 
 		&--button {
 			display: block;
-			width: 35px;
-			height: 35px;
-			padding: 5px 7px;
+			width: 30px;
+			height: 30px;
+			padding: 3px 7px;
 			border-radius: 50%;
 			margin: 0 12px;
 			color: #fff;
+			background-color: #a3cd39;
 
 			svg {
 				width: 100%;
 			}
 		}
 
-		.facebook { background-color: #3b5999 }
-		.twitter  { background-color: #55acee }
-		.gplus    { background-color: #dc473a }
-
-		.comments { 
-			background-color: #9ebf4c;
-			height: 35px;
+		.comment__counter { 
+			background-color: #a3cd39;
+			height: 30px;
 			padding: 0 12px;
 			position: relative;
-			line-height: 37px;
+			line-height: 30px;
 			font-size: 14px;
 			font-weight: 700;
 			color: #fff;

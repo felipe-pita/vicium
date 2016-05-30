@@ -6,7 +6,8 @@
 		display: flex;
 		flex-wrap: wrap;
 		flex-direction: column;
-		height: $bannerH*2;
+		border-top: 1px solid #fff;
+		height: $bannerH*2 + 1;
 
 		&--item {
 			height: $bannerH;
@@ -142,10 +143,10 @@
 			left: 0;
 			width: 100%;
 			height: 100%;
-			filter: blur(5px);
+			// filter: blur(5px);
 			overflow: hidden;
 
-			svg {
+			canvas {
 				width: 100%;
 				height: 100%;
 				object-fit: cover;

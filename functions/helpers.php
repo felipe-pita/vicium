@@ -1,40 +1,50 @@
 <?php 
 
+// Gerar Título
+add_theme_support('title-tag');
+
+
 /*
- * Funções para auxiliar o desenvolvimento
+ * Header
  *
  */
 
-
-// Gerar Título
-function title() {
-	if ( function_exists('is_tag') && is_tag() ) { 
-		echo 'Arquivos ' . $tag . ' - '; 
-	} elseif ( is_archive() ) { 
-		wp_title(''); 
-		echo ' Todos - '; 
-	} elseif ( is_search() ) {
-		echo 'Resultado de busca ' . esc_html($s) . ' - '; 
-	} elseif ( !(is_404() ) && ( is_single() ) || ( is_page()) ) { 
-		wp_title(''); 
-		echo ' - '; 
-	} elseif (is_404()) { 
-		echo 'P&aacute;gina n&aacute;o encontrada - '; 
-	} if (is_home()) { 
-		bloginfo('name'); 
-		echo ' - ';
-		bloginfo('description'); 
-	} else { 
-		bloginfo('name'); 
-		echo ' - '; 
-		bloginfo('description'); 
-	}
+// Favicons
+function favicons(){
+	echo '
+	<link rel="apple-touch-icon" sizes="57x57" href="' . get_template_directory_uri() . '/dist/images/favicon/apple-touch-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="' . get_template_directory_uri() . '/dist/images/favicon/apple-touch-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="' . get_template_directory_uri() . '/dist/images/favicon/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="' . get_template_directory_uri() . '/dist/images/favicon/apple-touch-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="' . get_template_directory_uri() . '/dist/images/favicon/apple-touch-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="' . get_template_directory_uri() . '/dist/images/favicon/apple-touch-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="' . get_template_directory_uri() . '/dist/images/favicon/apple-touch-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="' . get_template_directory_uri() . '/dist/images/favicon/apple-touch-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="' . get_template_directory_uri() . '/dist/images/favicon/apple-touch-icon-180x180.png">
+	<link rel="icon" type="image/png" href="' . get_template_directory_uri() . '/dist/images/favicon/favicon-32x32.png" sizes="32x32">
+	<link rel="icon" type="image/png" href="' . get_template_directory_uri() . '/dist/images/favicon/favicon-194x194.png" sizes="194x194">
+	<link rel="icon" type="image/png" href="' . get_template_directory_uri() . '/dist/images/favicon/favicon-96x96.png" sizes="96x96">
+	<link rel="icon" type="image/png" href="' . get_template_directory_uri() . '/dist/images/favicon/android-chrome-192x192.png" sizes="192x192">
+	<link rel="icon" type="image/png" href="' . get_template_directory_uri() . '/dist/images/favicon/favicon-16x16.png" sizes="16x16">
+	<link rel="manifest" href="' . get_template_directory_uri() . '/dist/images/favicon/manifest.json">
+	<link rel="mask-icon" href="' . get_template_directory_uri() . '/dist/images/favicon/safari-pinned-tab.svg" color="#161c23">
+	<link rel="shortcut icon" href="' . get_template_directory_uri() . '/dist/images/favicon/favicon.ico">
+	<meta name="apple-mobile-web-app-title" content="Vicium">
+	<meta name="application-name" content="Vicium">
+	<meta name="msapplication-TileColor" content="#161c23">
+	<meta name="msapplication-TileImage" content="' . get_template_directory_uri() . '/dist/images/favicon/mstile-144x144.png">
+	<meta name="msapplication-config" content="' . get_template_directory_uri() . '/dist/images/favicon/browserconfig.xml">
+	<meta name="theme-color" content="#161c23">';
 }
 
 
+/*
+ * Taxonomies
+ *
+ */
 
 // Transformar termos em (termo, termo e termo)
-function gramaticator( $terms ) {
+function terms_gramaticator( $terms ) {
 	$count = 0;
 	$output = '';
 
@@ -60,16 +70,51 @@ function gramaticator( $terms ) {
 
 
 
-// imagem que ocupa a tela toda no conteúdo;
-function shortcode_telaInteira( $atts, $content = null ) {
-	return '<div class="single__content--full-screen">' . $content . '</div><span class="single__content--full-screen-placeholder"></span>';
+/*
+ * Content
+ *
+ */
+
+
+// Captura o tamanho da midia
+function content_getMediaSize($content) {
+
+	$media = array();
+
+	// Remove os parágrafos
+	$media['content'] = str_replace( array('<p>', '</p>'), '', $content);
+
+	// Captura os tamanhos da midia
+	preg_match("/width=\"([^\"]*)\"/", $content, $width);
+	preg_match("/height=\"([^\"]*)\"/", $content, $height);
+
+	$media['width'] = ( !empty($width[1]) ) ? $width[1] : 1920;
+	$media['height'] = ( !empty($height[1]) ) ? $height[1] : 1080;
+
+	return $media;
 }
-add_shortcode( 'tela-inteira', 'shortcode_telaInteira' );
+
+
+// Imagem que ocupa a tela toda no conteúdo
+function content_fullscreen( $atts, $content = null ) {
+	$media = content_getMediaSize($content);
+	return '<div class="single__content--full-screen" data-media-width="' . $media['width'] . '" data-media-height="' . $media['height'] . '">' . $media['content'] . '</div>';
+}
+add_shortcode( 'tela-inteira', 'content_fullscreen' );
+
+
+
+// Video Responsivo
+function content_embed($data) {
+	$media = content_getMediaSize($data);
+	return '<div class="single__content--embed" data-media-width="' . $media['width'] . '" data-media-height="' . $media['height'] . '">' . $media['content'] . '</div>';
+}
+add_filter('oembed_result', 'content_embed', 10, 3);
 
 
 
 // Galeria de imagem customizada
-function my_post_gallery( $output, $attr ) {
+function gallery( $output, $attr ) {
 	global $post, $wp_locale;
 
 	static $instance = 0;
@@ -209,4 +254,35 @@ function my_post_gallery( $output, $attr ) {
 
 	return $output;
 }
-add_filter( 'post_gallery', 'my_post_gallery', 10, 2 );
+add_filter( 'post_gallery', 'gallery', 10, 2 );
+
+
+// Fontes
+function content_fontes() {
+
+	if( have_rows('fontes') ) {
+		$count = 0;
+		$output = '<p class="single__fontes">';
+
+		$links = get_sub_field('fontes');
+
+		foreach ($links as $link) {
+			$count++;
+
+			$output .= '<a class="single__fontes--link" href="' . $link['fonte__link'] . '" target="_blank">' . $link['fonte__nome'];
+
+			if ( count( $terms ) > 1 ) {
+				if ( ($count + 1) != count( $terms ) and ($count) != count( $terms ) ) {
+					$output .= '<span>, </span>';
+				} else ( ($count + 1) == count( $terms ) ) {
+					$output .= '<span> e </span>';
+				}
+			}
+		}
+
+		$output .= '</p>';
+
+		return $output;
+
+	}
+}

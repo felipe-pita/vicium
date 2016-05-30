@@ -46,7 +46,7 @@
 			'label'                 => __( 'Notícias', 'vicium' ),
 			'description'           => __( 'Cadastro de notícias', 'vicium' ),
 			'labels'                => $labels,
-			'supports'              => array( ),
+			'supports'              => array( 'title', 'editor', 'thumbnail'),
 			'taxonomies'            => array( 'tax_plataforma', 'tax_tags', 'tax_genero' ),
 			'hierarchical'          => false,
 			'public'                => true,
