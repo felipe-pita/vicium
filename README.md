@@ -1,23 +1,7 @@
 # Vicium
 
-taxonomias
-
-Genero
-
-Plataformas
-
-distribuidor
-
-Desenvolvedor
-
-Jogadores
-
-
-
-
-
 # Mission
-terminar layout da home
+Layot do youtube
 
 
 ## .htaccess

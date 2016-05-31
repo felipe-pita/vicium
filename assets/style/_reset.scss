@@ -9,7 +9,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, blockquot
 header, nav, section, article, main, aside, footer, figure { display: block }
 
 /* global box-sizing */
-*, *:after, *:before { -moz-box-sizing: border-box; box-sizing: border-box; }
+*, *::after, *::before { -moz-box-sizing: border-box; box-sizing: border-box; }
 
 /* font-sizing */
 html { font-size: 10px }
@@ -22,6 +22,16 @@ article { -webkit-font-smoothing: antialiased; font-smoothing: antialiased; text
 
 /* width by container */
 img { max-width: 100%; height: auto; }
+
+/* container */
+.container {
+	width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 1024px;
+	padding-left: 30px;
+	padding-right: 30px;
+}
 
 
 /* --------------------------------------------------
@@ -42,16 +52,4 @@ img { max-width: 100%; height: auto; }
 .wp-caption.alignnone  { margin:  5px  0px; }
 .wp-caption.alignleft  { margin:  5px 20px  5px  0px; }
 .wp-caption.alignright { margin:  5px  0px  5px 20px; }
-
-/* default wordpress gallery classes */
-.gallery-caption, .wp-caption p.wp-caption-text { font-size: 1.3em;  margin: 0; color: #67b4b9; font-weight: bold; font-style: italic; }
-
-/* default wordpress comments classes */
-.sticky { }
-.bypostauthor { }
-
-/* default wordpress post classes */
-.bypostauthor {  }
-
-/* print */
 
