@@ -1,6 +1,6 @@
 <?php get_header(); ?> 
 
-	<main class="page-main single-analises" role="main">
+	<main class="page-main single-analises">
 
 		<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 
