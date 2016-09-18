@@ -42,7 +42,7 @@
 													echo '<dt class="single-analises__datasheet--title">' . get_taxonomy($data)->labels->singular_name . '</dt>';
 													echo '<dd class="single-analises__datasheet--content">';
 													$terms = wp_get_post_terms( $post->ID, $data );
-													echo gramaticator($terms);
+													echo terms_gramaticator($terms);
 													echo '</dd>';
 												echo '</dl>';
 											}

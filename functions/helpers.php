@@ -260,29 +260,25 @@ add_filter( 'post_gallery', 'gallery', 10, 2 );
 // Fontes
 function content_fontes() {
 
-	if( have_rows('fontes') ) {
+	if ( have_rows('fontes') ) {
 		$count = 0;
 		$output = '<p class="single__fontes">';
-
-		$links = get_sub_field('fontes');
+		$links = get_field('fontes');
 
 		foreach ($links as $link) {
 			$count++;
+			$output .= '<a class="single__fontes--link" href="' . $link['fontes__link'] . '" target="_blank">' . $link['fontes__nome'];
 
-			$output .= '<a class="single__fontes--link" href="' . $link['fonte__link'] . '" target="_blank">' . $link['fonte__nome'];
-
-			if ( count( $terms ) > 1 ) {
-				if ( ($count + 1) != count( $terms ) and ($count) != count( $terms ) ) {
+			if ( count( $links ) > 1 ) {
+				if ( ($count + 1) != count( $links ) and ($count) != count( $links ) ) {
 					$output .= '<span>, </span>';
-				} else ( ($count + 1) == count( $terms ) ) {
+				} elseif ( ($count + 1) == count( $links ) ) {
 					$output .= '<span> e </span>';
 				}
 			}
 		}
 
 		$output .= '</p>';
-
 		return $output;
-
 	}
 }
